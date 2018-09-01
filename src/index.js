@@ -47,9 +47,7 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {
-    createStore
-} from './Redux/index';
+import { createStore } from './Redux/index';
 const INCREASE = 'INCREASE';
 const DECREASE = 'DECREASE';
 
@@ -71,7 +69,12 @@ let reducer = (state = {
     }
 }
 let store = createStore(reducer);
-
+let increase = (amount) => (
+    {type: INCREASE, amount}
+)
+let decrease = (amount) => (
+    {type: DECREASE, amount}
+)
 class Counter extends React.Component {
     constructor() {
         super()
@@ -92,17 +95,8 @@ class Counter extends React.Component {
     render() {
         return ( <div>
             <p> { this.state.number } </p>
-                <button onClick = {() => store.dispatch({
-                    type: INCREASE,
-                    amount: 3
-                })
-            } > + </button>
-            <button onClick = {
-                () => store.dispatch({
-                    type: DECREASE,
-                    amount: 2
-                })
-            } > - </button> 
+                <button onClick = {() => store.dispatch(increase(3))}> + </button>
+                <button onClick = {() => store.dispatch(decrease(2))}> - </button> 
         </div>
         )
     }
