@@ -45,51 +45,15 @@
 // render()
 // store.subscribe(render)
 
-import React, {Component} from 'react'
+import React from 'react'
 import ReactDOM from 'react-dom'
-import {PropTypes} from 'prop-types'
-
-class Container extends Component {
-    getChildContext(){
-        return {color: '#909'}
-    }
-    render(){
-        return (
-            <MessageList messages={this.props.messages} />
-        )
-    }
-}
-Container.childContextTypes ={
-    color: PropTypes.string
-}
-class MessageList extends Component {
-    render(){
-        return (
-            <ul>
-                {
-                    this.props.messages.map((message,index)=><Message key={index} message={message} />)
-                }
-            </ul>
-        )
-    }
-}
-class Message extends Component {
-    render(){
-        return (
-            <li style={{color: this.context.color}}>{this.props.message}</li>
-        )
-    }
-}
-Message.contextTypes = {
-    color: PropTypes.string
-}
-
-let messages = [1,2,3];
+import Counter from './components/Counter/index'
+import TodoApp from './components/TodoApp/index'
 
 ReactDOM.render(
     <div>
-        <Container messages = {messages}>
-        </Container>
+        <Counter />
+        <TodoApp />
     </div>,
     document.getElementById('root')
 )
