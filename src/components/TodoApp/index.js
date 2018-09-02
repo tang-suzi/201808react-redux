@@ -1,27 +1,11 @@
-import React, { Component } from 'react';
-import { createStore } from './../../Redux/index'
+import React, {Component} from 'react'
+import {store} from './../../Store/index'
+import {ADD_TODO, DELETE_TODO} from './../actions/index'
 
-const ADD_TODO = 'ADD_TODO'
-const DELETE_TODO = 'DELETE_TODO'
-let reducer = (state={list:[]},action) => {
-    if(action === undefined) return state;
-    switch (action.type){
-        case ADD_TODO:
-            return {list:[...state.list, action.text]};
-        case DELETE_TODO:
-            let list = state.list;
-            list.splice(action.index,1);
-            // 状态具有不变性 每次都要返回一个新的对象
-            return {list:[...list]};
-        default:
-            return state;
-    }
-}
-let store = createStore(reducer);
 class TodoApp extends Component {
     constructor(props){
         super(props);
-        this.state = {list: store.getState().list};
+        this.state = {list: store.getState().todo.list};
     }
     handleKeyUp = (e) => {
         if(e.keyCode === 13 && e.target.value) {
@@ -41,7 +25,8 @@ class TodoApp extends Component {
     componentWillMount () {
         this.unSubscribe = store.subscribe(()=>{
             this.setState({
-                list:store.getState().list
+                list: store.getState().todo.list
+                // Error: 数据获取到了  但是list显示undefined
             })
         })
     }

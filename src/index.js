@@ -47,11 +47,13 @@
 
 import React from 'react'
 import ReactDOM from 'react-dom'
-// import Counter from './components/Counter/index'
+import Counter from './components/Counter/index'
 import TodoApp from './components/TodoApp/index'
 
 ReactDOM.render(
-    // <Counter />,
-    <TodoApp />,
+    <div>
+        <Counter />
+        <TodoApp />
+    </div>,
     document.getElementById('root')
 )

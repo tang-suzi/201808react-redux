@@ -1,27 +1,8 @@
 import React, {Component} from 'react'
-import { createStore } from './../../Redux/index';
+import {store} from './../../Store/index'
+import {INCREASE, DECREASE} from './../actions/index'
 
-const INCREASE = 'INCREASE';
-const DECREASE = 'DECREASE';
 
-let reducer = (state = {
-    number: 0
-}, action) => {
-    if (action === undefined) return state;
-    switch (action.type) {
-        case INCREASE:
-            return {
-                number: state.number + action.amount
-            };
-        case DECREASE:
-            return {
-                number: state.number - action.amount
-            };
-        default:
-            return state;
-    }
-}
-let store = createStore(reducer);
 let increase = (amount) => (
     {type: INCREASE, amount}
 )
@@ -32,13 +13,13 @@ class Counter extends Component {
     constructor() {
         super()
         this.state = {
-            number: store.getState().number
+            number: store.getState().counter.number
         }
     }
     componentWillMount() {
         this.unsubscribe = store.subscribe(() => {
             this.setState({
-                number: store.getState().number
+                number: store.getState().counter.number
             })
         })
     }
