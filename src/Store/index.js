@@ -12,6 +12,5 @@ let reducer = combineReducers({
     todoApp
 })
 let store = createStore(reducer);
-console.log(store.getState())
 //{counter:{number:0},todo:{list:[]}}
 export {store}
