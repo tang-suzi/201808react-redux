@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom'
 import Counter from './components/Counter1/index'
-import store from './Store2/index'
-import {Provider} from 'react-redux'
+import { createStore } from './Redux/index'
+import counter from './components/Counter1/index'
+import Provider from './Provider/index'
+
+let store = createStore(counter);
 
 ReactDOM.render(
     <Provider store={store}>

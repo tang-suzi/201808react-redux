@@ -6,3 +6,5 @@
 - 4. react todos
 - 5. combineReducers
 - 6. context
+- 7. react+redux
+- 8. 修改
